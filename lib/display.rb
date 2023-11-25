@@ -8,6 +8,36 @@ module DisplayText
     display_word(word)
   end
 
+  def display_game_saved
+    puts "\nGame saved correctly!"
+  end
+
+  def display_save_slots
+    puts "\nInput the number of the slot in wich you want to save the game."
+    puts SLOTS
+  end
+
+  SLOTS = <<~TEXT
+     -Slots:
+       Slot 1
+       Slot 2
+       Slot 3
+
+    Number:
+  TEXT
+
+  def display_invalid_confirmation
+    puts "\nPlease answer with yes or no:"
+  end
+
+  def display_file_exist
+    puts "\nThis slot already has a saved game. Do you want to overwrite it? (yes, no)"
+  end
+
+  def display_invalid_id
+    puts "\nPlease input a valid number: (1, 2, 3)"
+  end
+
   def display_separator
     puts '__________________________________________________________________'
   end
@@ -25,7 +55,7 @@ module DisplayText
   end
 
   def display_ask_input
-    puts "\nWrite your guess (letter or word):"
+    puts "\nWrite your guess (letter, word) or comman(!save, !quit):"
   end
 
   def display_mistakes(mistake_list)

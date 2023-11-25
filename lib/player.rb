@@ -6,13 +6,31 @@ require_relative 'display'
 class Player
   include DisplayText
 
-  def recive_guess(word)
+  def receive_guess(word)
     guess = gets.chomp.downcase.strip
+    return guess if guess == '!save'
+
     unless valid_guess_input?(word, guess)
       display_invalid_word
-      return recive_guess(word)
+      return receive_guess(word)
     end
     guess
+  end
+
+  def receive_name
+    id = gets.chomp.strip
+    return "saves/slot_#{id}" if ('1'..'3').include?(id)
+
+    display_invalid_id
+    receive_name
+  end
+
+  def receive_confirmation?
+    answer = gets.downcase.strip
+    return answer == 'yes' if %w[yes no].include?(answer)
+
+    display_invalid_confirmation
+    receive_confirmation?
   end
 
   private

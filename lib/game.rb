@@ -49,12 +49,14 @@ class Game
 
   def play_round
     display_ask_input
-    guess = player.recive_guess(word)
+    guess = player.receive_guess(word)
     check_guess(guess)
     display_round_results(tries, mistakes, result)
   end
 
   def check_guess(guess)
+    return controller.save_game if guess == '!save'
+
     return check_letter(guess) if guess.length == 1
 
     check_word(guess)
