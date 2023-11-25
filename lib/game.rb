@@ -11,24 +11,24 @@ class Game
     @word = select_word
     @player = Player.new
     @mistakes = []
+    @tries = 7
+    @result = initial_result
   end
 
   def play
-    tries = 7
-    result = initial_result
     display_separator
     display_round_results(tries, mistakes, result)
-    result, tries = play_round(tries, result) until end_game?(tries, result)
-    game_over(tries)
+    play_round until end_game?
+    game_over
     display_separator
     puts "\n\n"
   end
 
   private
 
-  attr_reader :word, :player, :mistakes
+  attr_reader :word, :player, :mistakes, :result, :tries
 
-  def game_over(tries)
+  def game_over
     display_separator
     sleep(0.7)
 
@@ -37,7 +37,7 @@ class Game
     display_win_game
   end
 
-  def end_game?(tries, result)
+  def end_game?
     tries.zero? || result.join('') == word
   end
 
@@ -45,35 +45,35 @@ class Game
     Array.new(word.length, '_')
   end
 
-  def play_round(tries, result)
+  def play_round
     display_ask_input
     guess = player.recive_guess(word)
-    result, tries = check_guess(guess, result, tries)
+    check_guess(guess)
     display_round_results(tries, mistakes, result)
-    [result, tries]
   end
 
-  def check_guess(guess, result, tries)
-    return check_letter(guess, result, tries) if guess.length == 1
+  def check_guess(guess)
+    return check_letter(guess) if guess.length == 1
 
-    check_word(guess, result, tries)
+    check_word(guess)
   end
 
-  def check_letter(guess, result, tries)
+  def check_letter(guess)
     index = [*0...word.length].filter { |indx| word[indx] == guess }
     if index.empty?
       mistakes.append(guess) unless mistakes.include?(guess)
-      tries -= 1
+      @tries -= 1
     else
       index.each { |indx| result[indx] = guess }
     end
-    [result, tries]
   end
 
-  def check_word(guess, result, tries)
-    return [word.split(''), tries] if guess == word
-
-    [result, tries - 1]
+  def check_word(guess)
+    if guess == word
+      @result = guess.split('')
+    else
+      @tries -= 1
+    end
   end
 
   def create_array_from_file(file_name)
@@ -92,5 +92,3 @@ class Game
     dictionary.sample
   end
 end
-
-Game.new.play
