@@ -8,6 +8,10 @@ module DisplayText
     display_word(word)
   end
 
+  def display_play_again
+    puts "\nDo you want to play again?"
+  end
+
   def display_load_play
     puts "\nStart new game or load save? (play, load)"
   end

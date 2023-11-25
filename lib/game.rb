@@ -28,6 +28,17 @@ class Game
     game_over
     display_separator
     display_empty_line
+    sleep(0.8)
+    display_play_again
+  end
+
+  def play_again
+    if player.receive_confirmation?
+      start_game
+    else
+      sleep(0.2)
+      controller.exit_game(true)
+    end
   end
 
   private

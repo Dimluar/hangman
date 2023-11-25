@@ -32,8 +32,18 @@ class StateController
   def close_game
     display_separator
     display_close_game
-    exit_game
+    exit_game(false)
     display_separator
+  end
+
+  def exit_game(end_game)
+    return if !end_game && !player.receive_confirmation?
+
+    display_separator
+    display_game_closed
+    display_separator
+    display_empty_line
+    exit
   end
 
   private
@@ -74,16 +84,6 @@ class StateController
 
   def deserialize_game(file)
     Marshal.load(file)
-  end
-
-  def exit_game
-    return unless player.receive_confirmation?
-
-    display_separator
-    display_game_closed
-    display_separator
-    display_empty_line
-    exit
   end
 
   def make_save(name)
