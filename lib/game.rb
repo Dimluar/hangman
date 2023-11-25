@@ -13,9 +13,37 @@ class Game
     @mistakes = []
   end
 
+  def play
+    tries = 7
+    result = initial_result
+    display_separator
+    display_round_results(tries, mistakes, result)
+    result, tries = play_round(tries, result) until end_game?(tries, result)
+    game_over(tries)
+    display_separator
+    puts "\n\n"
+  end
+
   private
 
   attr_reader :word, :player, :mistakes
+
+  def game_over(tries)
+    display_separator
+    sleep(0.7)
+
+    return display_lose_game(word) if tries.zero?
+
+    display_win_game
+  end
+
+  def end_game?(tries, result)
+    tries.zero? || result.join('') == word
+  end
+
+  def initial_result
+    Array.new(word.length, '_')
+  end
 
   def play_round(tries, result)
     display_ask_input
@@ -64,3 +92,5 @@ class Game
     dictionary.sample
   end
 end
+
+Game.new.play

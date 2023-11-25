@@ -8,6 +8,18 @@ module DisplayText
     display_word(word)
   end
 
+  def display_separator
+    puts '__________________________________________________________________'
+  end
+
+  def display_lose_game(word)
+    puts "\nYOU LOSE! The correct word was \e[34m#{word}\e[0m!"
+  end
+
+  def display_win_game
+    puts "\nYOU WIN! CONGRATS!"
+  end
+
   def display_invalid_word
     puts "\nIntroduce a letter or a word with correct length:"
   end

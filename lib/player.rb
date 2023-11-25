@@ -21,5 +21,3 @@ class Player
     (guess.length == 1 || guess.length == word.length) && guess.index(/[^[a-z]]/).nil?
   end
 end
-
-Player.new.display_invalid_word
