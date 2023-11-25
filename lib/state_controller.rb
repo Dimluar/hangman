@@ -11,10 +11,19 @@ class StateController
     @player = player
   end
 
+  def start_game
+    display_separator
+    display_load_play
+    todo = player.receive_load_play
+    return load_game if todo == 'load'
+
+    Game.new
+  end
+
   def save_game
     display_separator
     display_save_slots
-    name = player.receive_name
+    name = player.receive_name('1'..'3')
     make_save(name)
     display_separator
     sleep(0.6)
@@ -30,6 +39,42 @@ class StateController
   private
 
   attr_reader :game, :player
+
+  def load_game
+    return no_saves unless exist_saves?
+
+    saved_games = existing_saves
+    slots_numbers = obtain_slot_number(saved_games)
+    display_load_slots(slots_numbers)
+    name = player.receive_name(slots_numbers)
+    read_save(name)
+  end
+
+  def read_save(name)
+    deserialize_game(File.read(name))
+  end
+
+  def obtain_slot_number(saved_games)
+    saved_games.map { |file| file[-1] }
+  end
+
+  def exist_saves?
+    !Dir.exist?('saves') || Dir.empty?('saves') ? false : true
+  end
+
+  def no_saves
+    display_no_save
+    sleep(0.6)
+    start_game
+  end
+
+  def existing_saves
+    Dir.entries('saves').filter { |file| file[0] == 's' }
+  end
+
+  def deserialize_game(file)
+    Marshal.load(file)
+  end
 
   def exit_game
     return unless player.receive_confirmation?

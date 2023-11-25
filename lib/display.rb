@@ -8,6 +8,18 @@ module DisplayText
     display_word(word)
   end
 
+  def display_load_play
+    puts "\nStart new game or load save? (play, load)"
+  end
+
+  def display_invalid_load_play
+    puts "\nPlease answer with play or load:"
+  end
+
+  def display_no_save
+    puts "\nCan't load saves, there's none."
+  end
+
   def display_empty_line
     puts "\n"
   end
@@ -22,6 +34,11 @@ module DisplayText
 
   def display_game_saved
     puts "\nGame saved correctly!"
+  end
+
+  def display_load_slots(saved_games)
+    puts "\nInput the number of the slot you want to load the game from."
+    puts obtain_slots(saved_games)
   end
 
   def display_save_slots
@@ -68,6 +85,16 @@ module DisplayText
 
   def display_ask_input
     puts "\nWrite your guess (letter, word) or comman(!save, !quit):"
+  end
+
+  def obtain_slots(slots_numbers)
+    slots = slots_numbers.map { |number| "Slot #{number}\n" }.join('')
+    <<~TEXT
+       -Slots:
+         #{slots}
+
+      Number:
+    TEXT
   end
 
   def display_mistakes(mistake_list)

@@ -17,6 +17,10 @@ class Game
     @result = initial_result
   end
 
+  def start_game
+    controller.start_game
+  end
+
   def play
     display_separator
     display_round_results(tries, mistakes, result)
@@ -98,5 +102,3 @@ class Game
     dictionary.sample
   end
 end
-
-Game.new.play
