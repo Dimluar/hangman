@@ -1,0 +1,19 @@
+--- &1 !ruby/object:Game
+player: &2 !ruby/object:Player {}
+controller: !ruby/object:StateController
+  game: *1
+  player: *2
+word: associates
+mistakes: []
+tries: 7
+result:
+- _
+- _
+- _
+- _
+- _
+- _
+- _
+- _
+- _
+- _

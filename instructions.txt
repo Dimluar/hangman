@@ -12,7 +12,7 @@ Apart from guessing you can use the commands:
 
 If you decided to guess a letter you will get it's position on the word or it will be added to your mistakes.
 
-You can write already mistaken letter so be careful!
+You can write already mistaken letters so be careful!
 
 If you try to guess a word know that when failing no letters will be revealed and you will use a opportunity like normal.
 

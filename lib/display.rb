@@ -92,7 +92,7 @@ module DisplayText
   end
 
   def display_ask_input
-    puts "\nWrite your guess (letter, word) or comman(!save, !quit):"
+    puts "\nWrite your guess (letter, word) or command (!save, !quit):"
   end
 
   def obtain_slots(slots_numbers)
