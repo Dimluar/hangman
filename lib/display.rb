@@ -8,6 +8,10 @@ module DisplayText
     display_word(word)
   end
 
+  def self.display_instructions
+    puts File.read('instructions.txt')
+  end
+
   def display_play_again
     puts "\nDo you want to play again?"
   end

@@ -1,0 +1,22 @@
+
+WELCOME TO HANGMAN!
+__________________________________________________________________
+
+In this console version of the classic game you will have to try to guess the random word in seven tries.
+
+In every turn or round you can decide to guess a letter of a word.
+
+Apart from guessing you can use the commands:
+ - !quit: closes game.
+ - !save: save game locally.
+
+If you decided to guess a letter you will get it's position on the word or it will be added to your mistakes.
+
+You can write already mistaken letter so be careful!
+
+If you try to guess a word know that when failing no letters will be revealed and you will use a opportunity like normal.
+
+Every time you fail you will have opportunities left with drawings, losing when the last leg is drawn.
+
+When starting a new game you can decide between starting form scratch or load a previously saved game.
+__________________________________________________________________
