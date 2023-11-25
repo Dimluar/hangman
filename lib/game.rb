@@ -2,14 +2,16 @@
 
 require_relative 'display'
 require_relative 'player'
+require_relative 'state_controller'
 
 # Game motor
 class Game
   include DisplayText
 
   def initialize
-    @word = select_word
     @player = Player.new
+    @controller = StateController.new(self, player)
+    @word = select_word
     @mistakes = []
     @tries = 7
     @result = initial_result
@@ -26,7 +28,7 @@ class Game
 
   private
 
-  attr_reader :word, :player, :mistakes, :result, :tries
+  attr_reader :word, :player, :mistakes, :result, :tries, :controller
 
   def game_over
     display_separator
