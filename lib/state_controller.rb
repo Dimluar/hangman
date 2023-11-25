@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'display'
+require 'yaml'
 
 # Saves, loads and closes game
 class StateController
@@ -83,7 +84,7 @@ class StateController
   end
 
   def deserialize_game(file)
-    Marshal.load(file)
+    YAML.safe_load(file, permitted_classes: [Game, Player, StateController], aliases: true)
   end
 
   def make_save(name)
@@ -105,6 +106,6 @@ class StateController
   end
 
   def serialize_game
-    Marshal.dump(game)
+    game.to_yaml
   end
 end

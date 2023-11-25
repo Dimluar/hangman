@@ -27,12 +27,14 @@ GEM
       parser (>= 3.2.1.0)
     ruby-progressbar (1.13.0)
     unicode-display_width (2.5.0)
+    yaml (0.3.0)
 
 PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
   rubocop
+  yaml
 
 BUNDLED WITH
    2.4.21
