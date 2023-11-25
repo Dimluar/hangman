@@ -96,7 +96,7 @@ module DisplayText
   end
 
   def obtain_slots(slots_numbers)
-    slots = slots_numbers.map { |number| "Slot #{number}\n" }.join('')
+    slots = slots_numbers.map { |number| "Slot #{number}\n   " }.join('')
     <<~TEXT
        -Slots:
          #{slots}
