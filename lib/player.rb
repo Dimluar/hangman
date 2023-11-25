@@ -9,6 +9,7 @@ class Player
   def receive_guess(word)
     guess = gets.chomp.downcase.strip
     return guess if guess == '!save'
+    return guess if guess == '!quit'
 
     unless valid_guess_input?(word, guess)
       display_invalid_word

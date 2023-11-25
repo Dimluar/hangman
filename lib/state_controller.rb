@@ -20,9 +20,26 @@ class StateController
     sleep(0.6)
   end
 
+  def close_game
+    display_separator
+    display_close_game
+    exit_game
+    display_separator
+  end
+
   private
 
   attr_reader :game, :player
+
+  def exit_game
+    return unless player.receive_confirmation?
+
+    display_separator
+    display_game_closed
+    display_separator
+    display_empty_line
+    exit
+  end
 
   def make_save(name)
     make_saves_directory

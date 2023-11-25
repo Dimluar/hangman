@@ -8,6 +8,18 @@ module DisplayText
     display_word(word)
   end
 
+  def display_empty_line
+    puts "\n"
+  end
+
+  def display_game_closed
+    puts "\nGOODBYE! See you soon"
+  end
+
+  def display_close_game
+    puts "\nAny progress not saved will be lost. Do you want to proceed anyways? (yes, no)"
+  end
+
   def display_game_saved
     puts "\nGame saved correctly!"
   end

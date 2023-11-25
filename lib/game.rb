@@ -23,7 +23,7 @@ class Game
     play_round until end_game?
     game_over
     display_separator
-    puts "\n\n"
+    display_empty_line
   end
 
   private
@@ -56,6 +56,8 @@ class Game
 
   def check_guess(guess)
     return controller.save_game if guess == '!save'
+
+    return controller.close_game if guess == '!quit'
 
     return check_letter(guess) if guess.length == 1
 
@@ -96,3 +98,5 @@ class Game
     dictionary.sample
   end
 end
+
+Game.new.play
