@@ -8,6 +8,14 @@ module DisplayText
     display_word(word)
   end
 
+  def display_invalid_word
+    puts "\nIntroduce a letter or a word with correct length:"
+  end
+
+  def display_ask_input
+    puts "\nWrite your guess (letter or word):"
+  end
+
   private
 
   def display_mistakes(mistake_list)
