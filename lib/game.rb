@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
+require_relative 'display'
+
 # Game motor
 class Game
+  include DisplayText
+
   def initialize
     @word = select_word
   end
