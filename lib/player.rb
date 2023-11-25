@@ -4,6 +4,8 @@ require_relative 'display'
 
 # Human player
 class Player
+  include DisplayText
+
   def recive_guess(word)
     guess = gets.chomp.downcase.strip
     unless valid_guess_input?(word, guess)
@@ -19,3 +21,5 @@ class Player
     (guess.length == 1 || guess.length == word.length) && guess.index(/[^[a-z]]/).nil?
   end
 end
+
+Player.new.display_invalid_word
