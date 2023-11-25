@@ -28,8 +28,6 @@ module DisplayText
     puts "\nWrite your guess (letter or word):"
   end
 
-  private
-
   def display_mistakes(mistake_list)
     puts " > Mistakes: #{mistake_list.join(', ')}"
   end
